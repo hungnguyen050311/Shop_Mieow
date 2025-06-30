@@ -130,6 +130,13 @@ body {
     transition: transform 0.15s cubic-bezier(0.17, 0.67, 0.29, 2.71) 0s;
 }
 
+.page-item-wrap {
+    max-width: 420px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .page-item-wrap:hover {
     transform: translateZ(0) scale(1.015);
 }

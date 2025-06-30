@@ -77,13 +77,64 @@
             </div>
             <div class="page-bioline text-fs-16 page-text-color page-text-font mt-8 ln-h-22 text-center">Chuyên coppy pase Code!</div>
             
+                        <!-- ...existing code... -->
             <div class="flex-both-center flex-wrap mt-16">
+                <select id="songSelector" class="glow-on-hover" style="margin-right: 10px;">
+                    <option value="/music/[SLOWED + REVERB] FICTION - BEAST (VIETZ REMIX).mp3">FICTION BEAST</option>
+                    <option value="/music/music4.mp3">Hoa nở bên đường</option>
+                    <option value="/music/music2.mp3">Tình yêu có còn tồn tại</option>
+                    <option value="/music/music3.mp3">Đừng ai nhắc về cô ấy</option>
+                    <option value="/music/music5.mp3">Hãy trao cho anh</option>
+                    <option value="/music/music6.mp3">Không ai nói chia tay</option>
+                    <option value="/music/music7.mp3">1IN3 Sợ phải kết thúc</option>
+                    <option value="/music/Trái tim này đã lỡ yêu em từ bao lâu...Mỹ Nhân x Bạn Tình Ơi - Thazh x Đông Remix - Nhạc Hot TikTok.mp3">Mỹ nhân</option>
+                    <option value="/music/Vô Tình Remix (Bản Full TikTok) - HychuL x Đông Remix - Đôi Khi Tôi Vô Tình Nhìn Thấy Anh Remix.mp3">Vô tình</option>
+                    <option value="/music/CHỈ LÀ ANH KHÔNG BIẾT REMIX (LKD x GENZ MUSIC)  ĐÀN ÔNG MẤY KHI RƠI NƯỚC MẮT VÌ NGƯỜI CON GÁI....mp3">Chỉ là anh đéo biết</option>
+                    <!-- Thêm các bài hát khác tại đây -->
+                </select>
                 <audio id="myAudio">
-                    <source src="/music/music4.mp3" type="audio/mpeg">
+                    <source id="audioSource" src="/music/music4.mp3" type="audio/mpeg">
                 </audio>
                 <button class="glow-on-hover" onclick="playAudio()" type="button">Play Music</button>
                 <button class="glow-on-hover" onclick="pauseAudio()" type="button">Stop Music</button>
             </div>
+            <!-- ...existing code... -->
+<script>
+    var audio = document.getElementById("myAudio");
+    var audioSource = document.getElementById("audioSource");
+    var songSelector = document.getElementById("songSelector");
+
+    function playAudio() {
+        audio.play();
+    }
+
+    function pauseAudio() {
+        audio.pause();
+    }
+
+    function adjustSelectWidth() {
+        var select = document.getElementById('songSelector');
+        var tmp = document.createElement('span');
+        tmp.style.visibility = 'hidden';
+        tmp.style.position = 'fixed';
+        tmp.style.font = window.getComputedStyle(select).font;
+        tmp.innerText = select.options[select.selectedIndex].text;
+        document.body.appendChild(tmp);
+        select.style.width = (tmp.offsetWidth + 70) + 'px'; // 70px cho mũi tên và padding
+        document.body.removeChild(tmp);
+    }
+
+    songSelector.addEventListener('change', function() {
+        audio.pause();
+        audioSource.src = this.value;
+        audio.load();
+        audio.play();
+        adjustSelectWidth();
+    });
+
+    window.addEventListener('DOMContentLoaded', adjustSelectWidth);
+</script>
+<!-- ...existing code... -->
 
             <div class="page-bioline text-fs-16 page-text-color page-text-font mt-8 ln-h-22 text-center donate" onclick="window.location.href='bank.html'">
                 Donate tùy tâm
