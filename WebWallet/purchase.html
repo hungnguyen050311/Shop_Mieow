@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>MieowShop - Thanh Toán Đơn Hàng</title>
+  <link rel="shortcut icon" href="./yae.gif" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h2 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 30px;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .box {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+      width: 420px;
+    }
+    .box h3 {
+      margin-bottom: 20px;
+      font-size: 18px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+    }
+    .info p {
+      margin: 8px 0;
+    }
+    .info strong {
+      color: #000;
+    }
+    .info .highlight {
+      color: red;
+      font-weight: bold;
+    }
+    .qr img {
+      width: 100%;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    .note {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+    }
+    .note a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .note a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>MieowShop - Thanh Toán Đơn Hàng</h2>
+
+  <div class="container">
+    <!-- Thông tin đơn hàng -->
+    <div class="box">
+      <h3>Thông tin đơn hàng</h3>
+      <div class="info">
+        <p>Email/SDT: <strong id="email">-</strong></p>
+        <p>Gói mua: <strong id="plan">-</strong></p>
+        <p>Số tiền: <strong id="amount">- đ</strong></p>
+        <p>Nội dung CK: <strong class="highlight" id="note">MieowShop-XXXXXX</strong></p>
+        <p>Đơn hàng hết hạn sau: <strong class="highlight" id="timer">10:00</strong></p>
+        <p>Lưu ý, nếu giao dịch ghi sai nội dung chuyển khoản, mà ghi đúng Email/SDT thì liên hệ qua admin để được hỗ trợ</p>
+      </div>
+    </div>
+
+    <!-- Mã QR -->
+    <div class="box qr">
+      <h3>Quét mã QR để thanh toán</h3>
+      <img src="./assets/img/pay.jpg" alt="QR VietQR MBBank">
+      <p style="text-align:center; font-size: 13px; color:#555">Dùng app MB Bank, Momo, ZaloPay, VCB, TPBank...</p>
+    </div>
+  </div>
+
+  <div class="note">
+    Nếu quá 5 phút không nhận được mã, vui lòng liên hệ<br>
+    <a href="https://facebook.com/hungng.0503" target="_blank">Facebook Hùng</a> | Zalo: 0888941220
+  </div>
+
+  <script>
+    // Lấy dữ liệu từ URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email') || '-';
+    const plan = urlParams.get('plan') || '-';
+    const amount = urlParams.get('amount') || '-';
+    const code = urlParams.get('code') || Math.random().toString(36).substring(2, 8).toUpperCase();
+
+    // Gán dữ liệu vào giao diện
+    document.getElementById('email').innerText = email;
+    document.getElementById('plan').innerText = plan;
+    document.getElementById('amount').innerText = amount + ' đ';
+    document.getElementById('note').innerText = 'MieowShop-' + code;
+
+    // Đếm ngược 10 phút
+    let time = 600;
+    function updateTimer() {
+      let minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+      document.getElementById('timer').innerText =
+        (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+      if (time > 0) time--;
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+
+</body>
+</html>

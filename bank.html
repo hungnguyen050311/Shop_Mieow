@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyển Khoản MB Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #e9ecef;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: linear-gradient(to right, #007bff, #6f42c1);
+        }
+        .button:hover {
+            opacity: 0.9;
+        }
+        .info {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f8ff;
+            border-radius: 4px;
+            border: 1px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Chuyển Khoản MB Bank</h2>
+    <div class="info">
+        <strong>Số Tài Khoản (STK):</strong> 0888941220<br>
+        <strong>Tên:</strong> NGUYỄN LÂM HÙNG<br>
+        <strong>Nội Dung Chuyển Khoản:</strong> UNGHOTOI MIEOWHTML
+    </div>
+    
+    <form id="transferForm">
+        <label for="amount">Số tiền:</label>
+        <input type="number" id="amount" name="amount" required>
+
+        <button type="submit" class="button">Chuyển Khoản</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('transferForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const amount = document.getElementById('amount').value;
+
+        // Chuyển hướng đến ứng dụng MB Bank (thay đổi đường dẫn nếu cần)
+        const url = `mbbankapp://transfer?amount=${amount}&stk=0888941220&name=NGUYỄN%20LÂM%20HÙNG&content=UNGHOTOI%20MIEOWHTML`;
+        window.location.href = url;
+    });
+</script>
+
+</body>
+</html>
